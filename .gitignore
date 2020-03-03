@@ -1,2 +1,7 @@
+.gitignore
 **/.idea
+
 AutoAuthor/Outputs/
+CraigsListScraper/Outputs
+
+CraigsListScraper/config.json
