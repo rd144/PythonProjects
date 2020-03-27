@@ -1,4 +1,3 @@
-
 class RedditEmailer():
 
     def __init__(self,reddit_config,email_config):

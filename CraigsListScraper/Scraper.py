@@ -1,6 +1,6 @@
 """
 Created by Ross Dingwall. Scraper.py is a script to look at all property listings on Craigslist and return those within
-provided parameters (including: neighbourhoods, GeoFence coordinates, budget,min/max bedrooms etc.
+provided parameters (including: neighbourhoods, GeoFence coordinates, budget,min/max bedrooms etc.)
 """
 
 from craigslist import CraigslistHousing
