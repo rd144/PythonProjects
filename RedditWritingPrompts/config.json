@@ -1,0 +1,17 @@
+{
+  "connection_details": {
+    "client_id": "Test",
+    "client_secret": "Test",
+    "user_agent": "Test",
+    "username": "Test",
+    "password": "Test"
+  },
+  "email_config": {
+    "fromEmail": "Test@gmail.com",
+    "fromPassword": "Test",
+    "distributionList": [
+      "Test@gmail.com"
+    ],
+    "removalExpressions" : []
+  }
+}
