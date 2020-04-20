@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>RedditWritingPrompts &#8212; PythonProjects  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Scraper module" href="Scraper.html" />
+    <link rel="prev" title="Ross Dingwall’s Python Projects" href="Projects.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-Reader">
+<span id="redditwritingprompts"></span><h1>RedditWritingPrompts<a class="headerlink" href="#module-Reader" title="Permalink to this headline">¶</a></h1>
+<p>Created by Ross Dingwall - This code is used to scrape the top n posts of a subreddit and send them to a mailing list.
+The intent behind this is to provide my partner with creative writing prompts whenever they require them.</p>
+<p>#TODO - The code needs proper commenting and documentation behind it. Also splitting it into multiple classes 1 for emailing and one for reddit would allow for use in other scripts.</p>
+<dl class="py class">
+<dt id="Reader.RedditEmailer">
+<em class="property">class </em><code class="sig-prename descclassname">Reader.</code><code class="sig-name descname">RedditEmailer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reddit_config</span></em>, <em class="sig-param"><span class="n">email_config</span></em>, <em class="sig-param"><span class="n">previous_posts_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Reader.RedditEmailer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="Reader.RedditEmailer.create_reddit_object">
+<code class="sig-name descname">create_reddit_object</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Reader.RedditEmailer.create_reddit_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Reader.RedditEmailer.message_creation">
+<code class="sig-name descname">message_creation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">submission_list</span></em>, <em class="sig-param"><span class="n">subject</span></em>, <em class="sig-param"><span class="n">removal_expressions</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Reader.RedditEmailer.message_creation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Reader.RedditEmailer.previous_post_update">
+<code class="sig-name descname">previous_post_update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">previous_posts</span></em>, <em class="sig-param"><span class="n">previous_posts_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Reader.RedditEmailer.previous_post_update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Reader.RedditEmailer.send_emails">
+<code class="sig-name descname">send_emails</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em>, <em class="sig-param"><span class="n">fromEmail</span></em>, <em class="sig-param"><span class="n">fromPassword</span></em>, <em class="sig-param"><span class="n">distributionList</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Reader.RedditEmailer.send_emails" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="Reader.RedditEmailer.subreddit_list_scraper">
+<code class="sig-name descname">subreddit_list_scraper</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reddit</span></em>, <em class="sig-param"><span class="n">subreddit</span></em>, <em class="sig-param"><span class="n">start_text</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">count</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">previous_posts</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Reader.RedditEmailer.subreddit_list_scraper" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="Reader.arguments">
+<code class="sig-prename descclassname">Reader.</code><code class="sig-name descname">arguments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Reader.arguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="Reader.main">
+<code class="sig-prename descclassname">Reader.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_path</span></em>, <em class="sig-param"><span class="n">subreddit</span></em>, <em class="sig-param"><span class="n">start_text</span></em>, <em class="sig-param"><span class="n">count</span></em>, <em class="sig-param"><span class="n">subject</span></em>, <em class="sig-param"><span class="n">previous_posts_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Reader.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">PythonProjects</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="Projects.html">Ross Dingwall’s Python Projects</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RedditWritingPrompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scraper.html">Scraper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EbookReader.html">EbookReader module</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="Projects.html">Ross Dingwall’s Python Projects</a><ul>
+      <li>Previous: <a href="Projects.html" title="previous chapter">Ross Dingwall’s Python Projects</a></li>
+      <li>Next: <a href="Scraper.html" title="next chapter">Scraper module</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Ross Dingwall.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/Reader.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

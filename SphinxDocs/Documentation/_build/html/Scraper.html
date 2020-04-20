@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>CraigsListScraper &#8212; PythonProjects  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="EbookReader module" href="EbookReader.html" />
+    <link rel="prev" title="RedditWritingPrompts" href="Reader.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-Scraper">
+<span id="craigslistscraper"></span><h1>CraigsListScraper<a class="headerlink" href="#module-Scraper" title="Permalink to this headline">¶</a></h1>
+<p>Created by Ross Dingwall. Scraper.py is a script to look at all property listings on Craigslist and return those within
+provided parameters (including: neighbourhoods, GeoFence coordinates, budget,min/max bedrooms etc.)</p>
+<dl class="py function">
+<dt id="Scraper.arguments">
+<code class="sig-prename descclassname">Scraper.</code><code class="sig-name descname">arguments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Scraper.arguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="Scraper.config_parser">
+<code class="sig-prename descclassname">Scraper.</code><code class="sig-name descname">config_parser</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraper.config_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function for loading the config from the provided JSON file and returning the parts required
+:param config_path: The path to the config provided by the arguments
+:return filters: A Dictionary object containing the filters desired for pulling from CraigslistHousing
+:return boxes: A Dictionary object containing any GeoFence boxes you wish to check if the property is within
+:return neighbourhoods: A List object of all the neighbourhoods you wish to check if the property is within</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="Scraper.location_check">
+<code class="sig-prename descclassname">Scraper.</code><code class="sig-name descname">location_check</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">result</span></em>, <em class="sig-param"><span class="n">boxes</span></em>, <em class="sig-param"><span class="n">neighbourhoods</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraper.location_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function for checking if a result is in the correct location. If the result contains GeoTag information it will
+check if it’s within the boxes provided. If no GeoTag information is present, it will check the neighbourhoods.
+:param result: Dictionary Object returned from CraigslistHousing that contains the results for each listing
+:param boxes: Dictionary Object containing the coordinates of GeoFences required
+:param neighbourhoods: List object containing the desired neighbourhoods
+:return:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="Scraper.main">
+<code class="sig-prename descclassname">Scraper.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_path</span></em>, <em class="sig-param"><span class="n">site</span></em>, <em class="sig-param"><span class="n">category</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraper.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main portion of the code, main calls the other functions in order and does any additional analysis required.
+:param config_path: File path for the JSON config file.
+:param site: The site you wish to analyse
+:param category: The sub-category desired, taken from CraigsList (For example, <a class="reference external" href="https://vancouver.craigslist.org/pml/">https://vancouver.craigslist.org/pml/</a>
+the sub-category is “pml”
+:return output_df: A df containing the anaylsed results.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="Scraper.output_to_excel">
+<code class="sig-prename descclassname">Scraper.</code><code class="sig-name descname">output_to_excel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">output_df</span></em>, <em class="sig-param"><span class="n">output_path</span></em>, <em class="sig-param"><span class="n">column_order</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraper.output_to_excel" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function that first checks if any results have been found. If they have, it re-orders them and writes the report
+to Excel a the path provided.
+:param output_df: The DataFrame object containing the results you wish to be output
+:param column_order: A list of columns in the order you want the dataframe to be presented
+:param output_path: The path you wish the Excel file to be written to</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">PythonProjects</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="Projects.html">Ross Dingwall’s Python Projects</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Reader.html">RedditWritingPrompts</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CraigsListScraper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EbookReader.html">EbookReader module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Projects.html#module-EbookReader">EbookReader module</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="Projects.html">Ross Dingwall’s Python Projects</a><ul>
+      <li>Previous: <a href="Reader.html" title="previous chapter">RedditWritingPrompts</a></li>
+      <li>Next: <a href="EbookReader.html" title="next chapter">EbookReader module</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Ross Dingwall.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/Scraper.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
