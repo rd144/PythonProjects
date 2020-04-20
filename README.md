@@ -17,9 +17,12 @@ min/max bedrooms etc.) to an excel report.
 3. RedditWritingPrompts : A project for scraping a number of the top posts from the past 24 hours 
 of a subreddit, and emailing them to a distribution list.
 
+4. SphinxDocs : Contains the HTML documentation created using Sphinx from RST files. Created to best
+document each project automatically from commenting in the code itself.
+
 ## Skills Used
 
-1. Code Commenting - Used in every project
+1. Code Commenting - Used in every project (except SphinxDocs where no Python is written)
 2. Argument Parsing - AutoAuthor
 3. Use of Pandas - AutoAuthor
 4. Sending Emails - RedditWritingPrompts
@@ -27,3 +30,4 @@ of a subreddit, and emailing them to a distribution list.
 6. Argument Parsing - RedditWritingPrompts
 7. JSON Dict Objects - RedditWritingPrompts
 8. Datetime Formatting - RedditWritingPrompts
+9. Automatic Documentation - SphinxDocs
