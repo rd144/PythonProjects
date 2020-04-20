@@ -1,0 +1,7 @@
+.idea/
+AutoAuthor/Outputs/
+CraigsListScraper/Outputs/
+CraigsListScraper/config.json
+RedditWritingPrompts/myconfig.json
+RedditWritingPrompts/PreviousPosts.txt
+__pycache__/
