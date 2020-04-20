@@ -1,3 +1,11 @@
+"""
+Created by Ross Dingwall - This code is used to scrape the top n posts of a subreddit and send them to a mailing list.
+The intent behind this is to provide my partner with creative writing prompts whenever they require them.
+
+#TODO - The code needs proper commenting and documentation behind it. Also splitting it into multiple classes 1 for emailing and one for reddit would allow for use in other scripts.
+"""
+
+
 class RedditEmailer():
 
     def __init__(self,reddit_config,email_config,previous_posts_path):
