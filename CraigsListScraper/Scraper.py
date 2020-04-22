@@ -12,10 +12,16 @@ import json
 def config_parser(config_path):
     """
     A function for loading the config from the provided JSON file and returning the parts required
+
     :param config_path: The path to the config provided by the arguments
+    :type config_path: calss 'str'
     :return filters: A Dictionary object containing the filters desired for pulling from CraigslistHousing
+    :rtype filters:
     :return boxes: A Dictionary object containing any GeoFence boxes you wish to check if the property is within
+    :rtype boxes:
     :return neighbourhoods: A List object of all the neighbourhoods you wish to check if the property is within
+    :rtype boxes:
+
     """
 
     print("Parsing the config from : {path}".format(path=config_path))
@@ -60,10 +66,15 @@ def location_check(result,boxes,neighbourhoods):
     """
     A function for checking if a result is in the correct location. If the result contains GeoTag information it will
     check if it's within the boxes provided. If no GeoTag information is present, it will check the neighbourhoods.
+
     :param result: Dictionary Object returned from CraigslistHousing that contains the results for each listing
+    :type result: class 'dict'
     :param boxes: Dictionary Object containing the coordinates of GeoFences required
+    :type boxes: class 'dict'
     :param neighbourhoods: List object containing the desired neighbourhoods
-    :return:
+    :type neighbourhoods: class 'list'
+    :return True/False: A Boolean object that is set to True if the Result is present in either the Boxes or the Neighbourhoods
+    :rtype True/False: class 'bool'
     """
 
     def in_box(coords, box):
@@ -82,9 +93,6 @@ def location_check(result,boxes,neighbourhoods):
             return False
         except Exception as e:
             print("Error Encountered : {error}".format(error=e))
-            print(x_list)
-            print(y_list)
-            print(coords)
             quit()
 
     if result["geotag"]:
@@ -101,9 +109,14 @@ def output_to_excel(output_df,output_path,column_order):
     """
     A function that first checks if any results have been found. If they have, it re-orders them and writes the report
     to Excel a the path provided.
+
     :param output_df: The DataFrame object containing the results you wish to be output
+    :type output_df:
     :param column_order: A list of columns in the order you want the dataframe to be presented
+    :type column_order:
     :param output_path: The path you wish the Excel file to be written to
+    :type output_path:
+
     """
 
     if output_df.any:
@@ -116,11 +129,16 @@ def output_to_excel(output_df,output_path,column_order):
 def main(config_path,site,category):
     """
     The main portion of the code, main calls the other functions in order and does any additional analysis required.
+
     :param config_path: File path for the JSON config file.
+    :type config_path:
     :param site: The site you wish to analyse
-    :param category: The sub-category desired, taken from CraigsList (For example, https://vancouver.craigslist.org/pml/
-    the sub-category is "pml"
+    :type config_path:
+    :param category: The sub-category desired, taken from CraigsList (For example, https://vancouver.craigslist.org/pml/ the sub-category is "pml")
+    :type config_path:
     :return output_df: A df containing the anaylsed results.
+    :rtype output_df:
+
     """
 
     count = 0

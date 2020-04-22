@@ -155,27 +155,79 @@
             
   <div class="section" id="module-Reader">
 <span id="redditwritingprompts"></span><h1>RedditWritingPrompts<a class="headerlink" href="#module-Reader" title="Permalink to this headline">¶</a></h1>
-<p>Created by Ross Dingwall - This code is used to scrape the top n posts of a subreddit and send them to a mailing list.
+<p>Created by Ross Dingwall - This module is used to scrape the top “n” posts of a subreddit and send them to a mailing list.
 The intent behind this is to provide my partner with creative writing prompts whenever they require them.</p>
-<p>#TODO - The code needs proper commenting and documentation behind it. Also splitting it into multiple classes 1 for emailing and one for reddit would allow for use in other scripts.</p>
+<dl class="simple">
+<dt>TODO:</dt><dd><ul class="simple">
+<li><p>Splitting it into multiple classes 1 for emailing and one for reddit would allow for use in other scripts.</p></li>
+<li><p>Add Functionality to look at more than just top comments (most controversial, hottest etc.)</p></li>
+<li><p>Add functionality to look for an indefinite amount of comments (not limited to &lt; 1000)</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py class">
 <dt id="Reader.RedditEmailer">
 <em class="property">class </em><code class="sig-prename descclassname">Reader.</code><code class="sig-name descname">RedditEmailer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reddit_config</span></em>, <em class="sig-param"><span class="n">email_config</span></em>, <em class="sig-param"><span class="n">previous_posts_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Reader.RedditEmailer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reddit_config</strong> (<em>class 'dict'</em>) – A dictionary object containing the connection details required for connecting to Reddit. Including client_id, client_secret, user_agent, username, password</p></li>
+<li><p><strong>email_config</strong> (<em>class 'dict'</em>) – A Dictionary object containing the connection details required for sending emails via gmail. Including fromEmail, fromPassword, distributionList, removalExpressions</p></li>
+<li><p><strong>previous_posts_path</strong> (<em>class 'str'</em>) – The path you wish to keep the previous posts collected by this script.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="Reader.RedditEmailer.create_reddit_object">
 <code class="sig-name descname">create_reddit_object</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Reader.RedditEmailer.create_reddit_object" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Initialises and returns the reddit object using the parameters contained in the reddit_config saved to self</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return reddit</dt>
+<dd class="field-odd"><p>Reddit object created by the praw library using the reddir config details passed to the RedditEmailer Class</p>
+</dd>
+<dt class="field-even">Rtype reddit</dt>
+<dd class="field-even"><p>class ‘praw.reddit.Reddit’</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="Reader.RedditEmailer.message_creation">
 <code class="sig-name descname">message_creation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">submission_list</span></em>, <em class="sig-param"><span class="n">subject</span></em>, <em class="sig-param"><span class="n">removal_expressions</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Reader.RedditEmailer.message_creation" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This function creates the email message from the submissions scraped from Reddit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>submission_list</strong> (<em>class 'list'</em>) – A list of the posts found from Reddit</p></li>
+<li><p><strong>subject</strong> (<em>class 'str'</em>) – The subject you wish to send the email with</p></li>
+<li><p><strong>removal_expressions</strong> (<em>class 'list'</em>) – a list containing any regular expressions you wish to remove from the posts</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return email_message</dt>
+<dd class="field-even"><p>The email message created using email.mime</p>
+</dd>
+<dt class="field-odd">Rtype email_message</dt>
+<dd class="field-odd"><p>class ‘email.mime.multipart.MIMEMultipart’</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="Reader.RedditEmailer.previous_post_update">
-<code class="sig-name descname">previous_post_update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">previous_posts</span></em>, <em class="sig-param"><span class="n">previous_posts_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Reader.RedditEmailer.previous_post_update" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">previous_post_update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">previous_posts</span></em>, <em class="sig-param"><span class="n">previous_posts_path</span></em>, <em class="sig-param"><span class="n">limit</span><span class="o">=</span><span class="default_value">100</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Reader.RedditEmailer.previous_post_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function takes the newly updated previous_posts object and writes a number of the most recent unique posts
+to a text file at the provided fle path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>previous_posts</strong> (<em>class 'list'</em>) – A list containing all the previous posts and the newly compiled posts</p></li>
+<li><p><strong>previous_posts_path</strong> (<em>class 'str'</em>) – The path you want to save the previous posts to as a .txt file</p></li>
+<li><p><strong>limit</strong> (<em>class 'int'</em>) – The number of most recent posts you wish to save to file</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="Reader.RedditEmailer.send_emails">
@@ -185,19 +237,83 @@ The intent behind this is to provide my partner with creative writing prompts wh
 <dl class="py method">
 <dt id="Reader.RedditEmailer.subreddit_list_scraper">
 <code class="sig-name descname">subreddit_list_scraper</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reddit</span></em>, <em class="sig-param"><span class="n">subreddit</span></em>, <em class="sig-param"><span class="n">start_text</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">count</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">previous_posts</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Reader.RedditEmailer.subreddit_list_scraper" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Uses the reddit object to take a number of the top records from a provided subreddit. Currently the number of
+posts this looks at is limited to 1000 so the maximum it can gather is 1000.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reddit</strong> (<em>class 'praw.reddit.Reddit'</em>) – Reddit object created by the praw library using the reddir config details passed to the RedditEmailer Class</p></li>
+<li><p><strong>subreddit</strong> (<em>class 'str'</em>) – The name of the subreddit you wish to view. For example r/WritingPrompts can be provided as “WritingPrompts”</p></li>
+<li><p><strong>start_text</strong> (<em>class 'str'</em>) – Text that the posts you wish to examine start with. For example [WP] on writing prompts indicates the prompts themeselves</p></li>
+<li><p><strong>count</strong> (<em>class 'int'</em>) – The number of posts you want to look for</p></li>
+<li><p><strong>previous_posts</strong> (<em>class 'list'</em>) – A list of all the previous posts found by this code. By default it is set to an empty list.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return submission_list</dt>
+<dd class="field-even"><p>A list of all the collected submissions</p>
+</dd>
+<dt class="field-odd">Rtype submission_list</dt>
+<dd class="field-odd"><p>class ‘list’</p>
+</dd>
+<dt class="field-even">Return previous_posts</dt>
+<dd class="field-even"><p>The previous posts object, updated to include the newly found posts</p>
+</dd>
+<dt class="field-odd">Rtype previous_posts</dt>
+<dd class="field-odd"><p>class ‘list’</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
 <dt id="Reader.arguments">
 <code class="sig-prename descclassname">Reader.</code><code class="sig-name descname">arguments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Reader.arguments" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Parses all the required arguments and returns them as the “args” object.
+Required Arguments include:</p>
+<ol class="arabic simple">
+<li><p>subreddit - The subreddit to be analysed.</p></li>
+<li><p>config_path - The path to the json config file containing the Email and Reddit configs.</p></li>
+<li><p>previous_posts_path - The path to the txt file containing the previous posts. Defaults to None.</p></li>
+<li><p>subject - The subject to be applied to the email. Defaults to PythonGeneratedEmail.</p></li>
+<li><p>start_text - The start text of the reddit posts you wish to analyse. Defaults to None.</p></li>
+<li><p>count - The number of posts to be included in the email.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Return args</dt>
+<dd class="field-odd"><p>Namespace object containing the parsed value for the argument assigned to it’s corresponding name</p>
+</dd>
+<dt class="field-even">Rtype args</dt>
+<dd class="field-even"><p>class ‘argparse.Namespace’</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="Reader.main">
 <code class="sig-prename descclassname">Reader.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_path</span></em>, <em class="sig-param"><span class="n">subreddit</span></em>, <em class="sig-param"><span class="n">start_text</span></em>, <em class="sig-param"><span class="n">count</span></em>, <em class="sig-param"><span class="n">subject</span></em>, <em class="sig-param"><span class="n">previous_posts_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Reader.main" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The main for RedditEmailer, such that if it’s called from the command line it will perform the following steps:</p>
+<ol class="arabic simple">
+<li><p>Load both configs from the config_path</p></li>
+<li><p>Create the Reddit Session</p></li>
+<li><p>Retrieve the posts from the provided subreddit</p></li>
+<li><p>Update the previous posts path to the previous_posts_path</p></li>
+<li><p>Create the email</p></li>
+<li><p>Send the email to the distribution list held in the email config</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config_path</strong> (<em>class 'str'</em>) – The path to the json config file containing the Email and Reddit configs.</p></li>
+<li><p><strong>subreddit</strong> (<em>class 'str'</em>) – The subreddit to be analysed.</p></li>
+<li><p><strong>start_text</strong> (<em>class 'str'</em>) – The start text of the reddit posts you wish to analyse.</p></li>
+<li><p><strong>count</strong> (<em>class 'int'</em>) – The number of posts to be included in the email.</p></li>
+<li><p><strong>subject</strong> (<em>class 'str'</em>) – The subject to be applied to the email.</p></li>
+<li><p><strong>previous_posts_path</strong> (<em>class 'str'</em>) – The path to the txt file containing the previous posts.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 
