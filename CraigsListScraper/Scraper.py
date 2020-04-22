@@ -14,13 +14,13 @@ def config_parser(config_path):
     A function for loading the config from the provided JSON file and returning the parts required
 
     :param config_path: The path to the config provided by the arguments
-    :type config_path: calss 'str'
+    :type config_path: class 'str'
     :return filters: A Dictionary object containing the filters desired for pulling from CraigslistHousing
-    :rtype filters:
+    :rtype filters: class 'dict'
     :return boxes: A Dictionary object containing any GeoFence boxes you wish to check if the property is within
-    :rtype boxes:
+    :rtype boxes: class 'dict'
     :return neighbourhoods: A List object of all the neighbourhoods you wish to check if the property is within
-    :rtype boxes:
+    :rtype neighbourhoods: class 'list'
 
     """
 
@@ -75,14 +75,19 @@ def location_check(result,boxes,neighbourhoods):
     :type neighbourhoods: class 'list'
     :return True/False: A Boolean object that is set to True if the Result is present in either the Boxes or the Neighbourhoods
     :rtype True/False: class 'bool'
+
     """
 
     def in_box(coords, box):
         """
         A sub-function that checks if the given coordinates are present in the GeoFence box. Returns true or false
         depending on whether the coordinates are in or out of the box.
-        :param coords: The coordinates you want to check
-        :param box: The box you want to check if the coordinates are within
+
+        :param coords: The coordinates you want to check. In the form [x,y]
+        :type coords: class 'list'
+        :param box: The box you want to check if the coordinates are within in the form [[x1,y1],[x2,y2]]
+        :type box: class 'list'
+
         """
 
         x_list = sorted([box[0][1], box[1][1]])
@@ -111,11 +116,11 @@ def output_to_excel(output_df,output_path,column_order):
     to Excel a the path provided.
 
     :param output_df: The DataFrame object containing the results you wish to be output
-    :type output_df:
+    :type output_df: class 'pandas.core.frame.DataFrame'
     :param column_order: A list of columns in the order you want the dataframe to be presented
-    :type column_order:
+    :type column_order: class 'list'
     :param output_path: The path you wish the Excel file to be written to
-    :type output_path:
+    :type output_path: class 'str'
 
     """
 
@@ -131,13 +136,13 @@ def main(config_path,site,category):
     The main portion of the code, main calls the other functions in order and does any additional analysis required.
 
     :param config_path: File path for the JSON config file.
-    :type config_path:
+    :type config_path: class 'str'
     :param site: The site you wish to analyse
-    :type config_path:
+    :type site: class 'str'
     :param category: The sub-category desired, taken from CraigsList (For example, https://vancouver.craigslist.org/pml/ the sub-category is "pml")
-    :type config_path:
+    :type category: class 'str'
     :return output_df: A df containing the anaylsed results.
-    :rtype output_df:
+    :rtype output_df: class 'pandas.core.frame.DataFrame'
 
     """
 
@@ -173,6 +178,18 @@ def main(config_path,site,category):
     return output_df
 
 def arguments():
+    """
+    Parses all the required arguments and returns them as the "args" object.
+    Required Arguments include:
+
+    1. config_path - The path to the json config file.
+    2. site - The location you want to investigate.
+    3. output_path - The path to the .xlsx file you want to write the results to.
+    4. category - The craigslist category you wish to investigate.
+
+    :return args: Namespace object containing the parsed value for the argument assigned to it's corresponding name
+    :rtype args: class 'argparse.Namespace'
+    """
 
     parser = argparse.ArgumentParser()
 

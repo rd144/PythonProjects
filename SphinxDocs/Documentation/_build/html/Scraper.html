@@ -160,7 +160,23 @@ provided parameters (including: neighbourhoods, GeoFence coordinates, budget,min
 <dl class="py function">
 <dt id="Scraper.arguments">
 <code class="sig-prename descclassname">Scraper.</code><code class="sig-name descname">arguments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Scraper.arguments" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Parses all the required arguments and returns them as the “args” object.
+Required Arguments include:</p>
+<ol class="arabic simple">
+<li><p>config_path - The path to the json config file.</p></li>
+<li><p>site - The location you want to investigate.</p></li>
+<li><p>output_path - The path to the .xlsx file you want to write the results to.</p></li>
+<li><p>category - The craigslist category you wish to investigate.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Return args</dt>
+<dd class="field-odd"><p>Namespace object containing the parsed value for the argument assigned to it’s corresponding name</p>
+</dd>
+<dt class="field-even">Rtype args</dt>
+<dd class="field-even"><p>class ‘argparse.Namespace’</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="Scraper.config_parser">
@@ -168,23 +184,26 @@ provided parameters (including: neighbourhoods, GeoFence coordinates, budget,min
 <dd><p>A function for loading the config from the provided JSON file and returning the parts required</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>config_path</strong> (<em>calss 'str'</em>) – The path to the config provided by the arguments</p>
+<dd class="field-odd"><p><strong>config_path</strong> (<em>class 'str'</em>) – The path to the config provided by the arguments</p>
 </dd>
 <dt class="field-even">Return filters</dt>
 <dd class="field-even"><p>A Dictionary object containing the filters desired for pulling from CraigslistHousing</p>
 </dd>
 <dt class="field-odd">Rtype filters</dt>
-<dd class="field-odd"><p></p></dd>
+<dd class="field-odd"><p>class ‘dict’</p>
+</dd>
 <dt class="field-even">Return boxes</dt>
 <dd class="field-even"><p>A Dictionary object containing any GeoFence boxes you wish to check if the property is within</p>
 </dd>
 <dt class="field-odd">Rtype boxes</dt>
-<dd class="field-odd"><p></p></dd>
+<dd class="field-odd"><p>class ‘dict’</p>
+</dd>
 <dt class="field-even">Return neighbourhoods</dt>
 <dd class="field-even"><p>A List object of all the neighbourhoods you wish to check if the property is within</p>
 </dd>
-<dt class="field-odd">Rtype boxes</dt>
-<dd class="field-odd"><p></p></dd>
+<dt class="field-odd">Rtype neighbourhoods</dt>
+<dd class="field-odd"><p>class ‘list’</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -217,16 +236,17 @@ check if it’s within the boxes provided. If no GeoTag information is present, 
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>config_path</strong> – File path for the JSON config file.</p></li>
-<li><p><strong>site</strong> – The site you wish to analyse</p></li>
-<li><p><strong>category</strong> – The sub-category desired, taken from CraigsList (For example, <a class="reference external" href="https://vancouver.craigslist.org/pml/">https://vancouver.craigslist.org/pml/</a> the sub-category is “pml”)</p></li>
+<li><p><strong>config_path</strong> (<em>class 'str'</em>) – File path for the JSON config file.</p></li>
+<li><p><strong>site</strong> (<em>class 'str'</em>) – The site you wish to analyse</p></li>
+<li><p><strong>category</strong> (<em>class 'str'</em>) – The sub-category desired, taken from CraigsList (For example, <a class="reference external" href="https://vancouver.craigslist.org/pml/">https://vancouver.craigslist.org/pml/</a> the sub-category is “pml”)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return output_df</dt>
 <dd class="field-even"><p>A df containing the anaylsed results.</p>
 </dd>
 <dt class="field-odd">Rtype output_df</dt>
-<dd class="field-odd"><p></p></dd>
+<dd class="field-odd"><p>class ‘pandas.core.frame.DataFrame’</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -238,9 +258,9 @@ to Excel a the path provided.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>output_df</strong> – The DataFrame object containing the results you wish to be output</p></li>
-<li><p><strong>column_order</strong> – A list of columns in the order you want the dataframe to be presented</p></li>
-<li><p><strong>output_path</strong> – The path you wish the Excel file to be written to</p></li>
+<li><p><strong>output_df</strong> (<em>class 'pandas.core.frame.DataFrame'</em>) – The DataFrame object containing the results you wish to be output</p></li>
+<li><p><strong>column_order</strong> (<em>class 'list'</em>) – A list of columns in the order you want the dataframe to be presented</p></li>
+<li><p><strong>output_path</strong> (<em>class 'str'</em>) – The path you wish the Excel file to be written to</p></li>
 </ul>
 </dd>
 </dl>

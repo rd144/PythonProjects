@@ -222,13 +222,23 @@ in DataFrame objects, and the word DataFrame is normalised before being returned
 <dt id="EbookReader.book_reader">
 <code class="sig-prename descclassname">EbookReader.</code><code class="sig-name descname">book_reader</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">chapter_flag</span></em>, <em class="sig-param"><span class="n">author</span></em>, <em class="sig-param"><span class="n">language</span><span class="o">=</span><span class="default_value">'english'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#EbookReader.book_reader" title="Permalink to this definition">¶</a></dt>
 <dd><p>This parameter takes the path of an epub file and extracts the text from it into a dataframe of sentences, and a
-dictionary containing each word and the frequency it occurs in the book
-:param path: Path to the epub file
-:param chapter_flag: The flag that the epub uses to identify chapters
-:param author: The author for the book
-:param language: The language the book is written in (defaults to english)
-:return sentence_df: A DataFrame object that contains the author and all the sentences used in the book
-:return word_dict: A dictionary object that contains all the words used in the book (as a key) and it’s count</p>
+dictionary containing each word and the frequency it occurs in the book</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – Path to the epub file</p></li>
+<li><p><strong>chapter_flag</strong> – The flag that the epub uses to identify chapters</p></li>
+<li><p><strong>author</strong> – The author for the book</p></li>
+<li><p><strong>language</strong> – The language the book is written in (defaults to english)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return sentence_df</dt>
+<dd class="field-even"><p>A DataFrame object that contains the author and all the sentences used in the book</p>
+</dd>
+<dt class="field-odd">Return word_dict</dt>
+<dd class="field-odd"><p>A dictionary object that contains all the words used in the book (as a key) and it’s count</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -255,9 +265,15 @@ stripped away (chapter1,chapter2 etc. becomes chapter).</p>
 <code class="sig-prename descclassname">EbookReader.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source_directory</span></em>, <em class="sig-param"><span class="n">output_directory</span></em><span class="sig-paren">)</span><a class="headerlink" href="#EbookReader.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>The main function of the EbookReader code. This function runs all the others in order, first creating the config from
 the source directory, then analysing the contents of the files in the config, before outputing the raw data as csv’s
-and wordclouds for each author to the provided output directory
-:param source_directory: The directory on your system containing all the epub files
-:param output_directory: The directory on your system you wish to place the outputs</p>
+and wordclouds for each author to the provided output directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_directory</strong> – The directory on your system containing all the epub files</p></li>
+<li><p><strong>output_directory</strong> – The directory on your system you wish to place the outputs</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">

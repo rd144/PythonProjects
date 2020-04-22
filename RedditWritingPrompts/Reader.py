@@ -203,6 +203,19 @@ class RedditEmailer():
             quit()
 
     def send_emails(self,message,fromEmail,fromPassword,distributionList):
+        """
+        A function for sending emails to a distribution list
+
+        :param message: The email message created using email.mime
+        :type message: class 'email.mime.multipart.MIMEMultipart'
+        :param fromEmail: The email address of the account you want to send the emails from
+        :type fromEmail: class 'str'
+        :param fromPassword: The password for the account you want to send the emails from
+        :type fromPassword: class 'str'
+        :param distributionList: A list object containing a list of the email addresses you want to send the emails to
+        :type distributionList: class 'list'
+
+        """
         import smtplib
 
         print("Sending message to distribution list")

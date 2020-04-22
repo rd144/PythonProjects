@@ -61,9 +61,9 @@ def config_builder(source_directory):
     def dict_key_value_extract(key_term, dict_object):
         """
         A recursive sub-function used to find all instances of the key term provided in a nested dict object
+
         :param key_term: a string object you want to find as a value in the dict
         :param dict_object: a dictionary object (can be nested) which the code will find all instances of the key_term
-        :return:
         """
 
         if hasattr(dict_object, 'items'):
@@ -81,6 +81,7 @@ def config_builder(source_directory):
     def value_dive(object):
         """
         A sub-function for returning the left most string object in a dictionary/tuple/list of lists
+
         :param object: The object you want to retrieve the left-most object from
         :return object: The found string in the left most position
         """
@@ -144,17 +145,20 @@ def book_reader(path,chapter_flag,author,language="english"):
     """
     This parameter takes the path of an epub file and extracts the text from it into a dataframe of sentences, and a
     dictionary containing each word and the frequency it occurs in the book
+
     :param path: Path to the epub file
     :param chapter_flag: The flag that the epub uses to identify chapters
     :param author: The author for the book
     :param language: The language the book is written in (defaults to english)
     :return sentence_df: A DataFrame object that contains the author and all the sentences used in the book
     :return word_dict: A dictionary object that contains all the words used in the book (as a key) and it's count
+
     """
 
     def word_counter(word_dict,word_list):
         """
         A subfunction for updating the word_dict object with the count of words in a given list of words
+
         :param word_dict: Existing word_dict object
         :param word_list: A list of words
         :return word_dict: Updated word_dict object
@@ -174,6 +178,7 @@ def book_reader(path,chapter_flag,author,language="english"):
         """
         A sub function that takes an EpubHtml object that has been flagged as a chapter and uses BeautifulSoup to extract
         the text values and form them into the sentence_df and word_dict object
+
         :param item: Epubhtml Object, flagged as a chapter
         :param sentence_df: Existing sentence_df object to have the chapters information appended to
         :param word_dict: Existing word_dict object to have the chapters information appended to
@@ -232,10 +237,8 @@ def book_analysis(config):
 
     :param config: The dictionary object config, created by config_builder (based on a source_directory)
     :type config: class 'dict'
-
     :return final_sentence_df: A DataFrame object containing each sentence the author wrote, and in what book they wrote it.
     :rtype final_sentence_df: class 'pandas.core.frame.DataFrame'
-
     :return final_word_df: A DataFrame object containing each word an author used, the total words the author used, and the normalised ratio of that word against all words used by the author for comparison against other authors.
     :rtype final_word_df: class 'pandas.core.frame.DataFrame'
 
@@ -244,6 +247,7 @@ def book_analysis(config):
     def normalise_word_df(dataframe):
         """
         A sub-function for normalising a given DataFrame
+
         :param dataframe: The DataFrame object you wish to normalise
         :return normalized: The Normalized DataFrame object
         """
@@ -303,6 +307,7 @@ def main(source_directory,output_directory):
     The main function of the EbookReader code. This function runs all the others in order, first creating the config from
     the source directory, then analysing the contents of the files in the config, before outputing the raw data as csv's
     and wordclouds for each author to the provided output directory
+
     :param source_directory: The directory on your system containing all the epub files
     :param output_directory: The directory on your system you wish to place the outputs
     """

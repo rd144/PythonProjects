@@ -232,7 +232,18 @@ to a text file at the provided fle path</p>
 <dl class="py method">
 <dt id="Reader.RedditEmailer.send_emails">
 <code class="sig-name descname">send_emails</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em>, <em class="sig-param"><span class="n">fromEmail</span></em>, <em class="sig-param"><span class="n">fromPassword</span></em>, <em class="sig-param"><span class="n">distributionList</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Reader.RedditEmailer.send_emails" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>A function for sending emails to a distribution list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>class 'email.mime.multipart.MIMEMultipart'</em>) – The email message created using email.mime</p></li>
+<li><p><strong>fromEmail</strong> (<em>class 'str'</em>) – The email address of the account you want to send the emails from</p></li>
+<li><p><strong>fromPassword</strong> (<em>class 'str'</em>) – The password for the account you want to send the emails from</p></li>
+<li><p><strong>distributionList</strong> (<em>class 'list'</em>) – A list object containing a list of the email addresses you want to send the emails to</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="Reader.RedditEmailer.subreddit_list_scraper">
