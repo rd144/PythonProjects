@@ -162,13 +162,18 @@
 <span id="ebookreader"></span><h2>EbookReader<a class="headerlink" href="#module-EbookReader" title="Permalink to this headline">¶</a></h2>
 <p>Created by Ross Dingwall. EbookReader.py is a script to parse directories of epub files and return DataFrames containing
 information regarding the word frequency and sentences used within those files.</p>
-<p>Known Bugs:
-- Currently the code will see the author “John Smith” as different from “Smith, John”. While a function could be put
-in place to resolve this. I believe it may lead to more issues, when a manual review of the data would resolve this
-swiftly. However, for very large DataSets, this bug may be better resolved automatically.</p>
-<p>#TODO - Expand the code to work on Linux as well as Windows
-#TODO - Move import statements into the functions that use them to allow them to be properly called from outside the main
-#TODO - Create the output directory and it’s structure if it’s not already in place</p>
+<dl class="simple">
+<dt>Known Bugs:</dt><dd><ul class="simple">
+<li><p>Currently the code will see the author “John Smith” as different from “Smith, John”. While a function could be put in place to resolve this. I believe it may lead to more issues, when a manual review of the data would resolve this swiftly. However, for very large DataSets, this bug may be better resolved automatically.</p></li>
+</ul>
+</dd>
+<dt>TODO:</dt><dd><ul class="simple">
+<li><p>Expand the code to work on Linux as well as Windows</p></li>
+<li><p>Move import statements into the functions that use them to allow them to be properly called from outside the main</p></li>
+<li><p>Create the output directory and it’s structure if it’s not already in place</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py function">
 <dt id="EbookReader.arguments">
 <code class="sig-prename descclassname">EbookReader.</code><code class="sig-name descname">arguments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#EbookReader.arguments" title="Permalink to this definition">¶</a></dt>

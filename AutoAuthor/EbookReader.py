@@ -3,14 +3,13 @@ Created by Ross Dingwall. EbookReader.py is a script to parse directories of epu
 information regarding the word frequency and sentences used within those files.
 
 Known Bugs:
-- Currently the code will see the author "John Smith" as different from "Smith, John". While a function could be put
-in place to resolve this. I believe it may lead to more issues, when a manual review of the data would resolve this
-swiftly. However, for very large DataSets, this bug may be better resolved automatically.
+    * Currently the code will see the author "John Smith" as different from "Smith, John". While a function could be put in place to resolve this. I believe it may lead to more issues, when a manual review of the data would resolve this swiftly. However, for very large DataSets, this bug may be better resolved automatically.
 
+TODO:
+    * Expand the code to work on Linux as well as Windows
+    * Move import statements into the functions that use them to allow them to be properly called from outside the main
+    * Create the output directory and it's structure if it's not already in place
 
-#TODO - Expand the code to work on Linux as well as Windows
-#TODO - Move import statements into the functions that use them to allow them to be properly called from outside the main
-#TODO - Create the output directory and it's structure if it's not already in place
 """
 
 from ebooklib import epub
@@ -54,9 +53,7 @@ def config_builder(source_directory):
 
     :param source_directory: The filepath for the base directory containing any and all epub files you want analysed.
     :type source_directory: class 'str'
-
-    :return output_dict: A dictionary object that can be used as the config for the Book Analysis function. It contains
-    a list of epub filepaths in the source directory, what author they are from, what the title is, and what term designates a chapter
+    :return output_dict: A dictionary object that can be used as the config for the Book Analysis function. It contains a list of epub filepaths in the source directory, what author they are from, what the title is, and what term designates a chapter
     :rtype output_dict: class 'dict'
 
     """
