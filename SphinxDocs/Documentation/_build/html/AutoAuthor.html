@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AutoAuthor &mdash; Python Projects  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="CraigsListScraper" href="Scraper.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Python Projects
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="Projects.html">Ross Dingwall’s Python Projects</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Reader.html">RedditWritingPrompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scraper.html">CraigsListScraper</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">AutoAuthor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-EbookReader">EbookReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-GraphicCreation">GraphicCreation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Python Projects</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="Projects.html">Ross Dingwall’s Python Projects</a> &raquo;</li>
+        
+      <li>AutoAuthor</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/AutoAuthor.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="autoauthor">
+<h1>AutoAuthor<a class="headerlink" href="#autoauthor" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-EbookReader">
+<span id="ebookreader"></span><h2>EbookReader<a class="headerlink" href="#module-EbookReader" title="Permalink to this headline">¶</a></h2>
+<p>Created by Ross Dingwall. EbookReader.py is a script to parse directories of epub files and return DataFrames containing
+information regarding the word frequency and sentences used within those files.</p>
+<p>Known Bugs:
+- Currently the code will see the author “John Smith” as different from “Smith, John”. While a function could be put
+in place to resolve this. I believe it may lead to more issues, when a manual review of the data would resolve this
+swiftly. However, for very large DataSets, this bug may be better resolved automatically.</p>
+<p>#TODO - Expand the code to work on Linux as well as Windows
+#TODO - Move import statements into the functions that use them to allow them to be properly called from outside the main
+#TODO - Create the output directory and it’s structure if it’s not already in place</p>
+<dl class="py function">
+<dt id="EbookReader.arguments">
+<code class="sig-prename descclassname">EbookReader.</code><code class="sig-name descname">arguments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#EbookReader.arguments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses all the required arguments and returns them as the “args” object.
+Required Arguments include:</p>
+<ol class="arabic simple">
+<li><p>source_directory - The directory that contains the Ebooks you wish analysed.</p></li>
+<li><p>output_directory - The directory you wish the results created.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Return args</dt>
+<dd class="field-odd"><p>Namespace object containing the parsed value for the argument assigned to it’s corresponding name</p>
+</dd>
+<dt class="field-even">Rtype args</dt>
+<dd class="field-even"><p>class ‘argparse.Namespace’</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="EbookReader.book_analysis">
+<code class="sig-prename descclassname">EbookReader.</code><code class="sig-name descname">book_analysis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#EbookReader.book_analysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function which takes the config created by the config builder, iterates through all the stored filepaths and there
+details, and extracts information on each word, and sentence used by the author of the book. This information is stored
+in DataFrame objects, and the word DataFrame is normalised before being returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<em>class 'dict'</em>) – The dictionary object config, created by config_builder (based on a source_directory)</p>
+</dd>
+<dt class="field-even">Return final_sentence_df</dt>
+<dd class="field-even"><p>A DataFrame object containing each sentence the author wrote, and in what book they wrote it.</p>
+</dd>
+<dt class="field-odd">Rtype final_sentence_df</dt>
+<dd class="field-odd"><p>class ‘pandas.core.frame.DataFrame’</p>
+</dd>
+<dt class="field-even">Return final_word_df</dt>
+<dd class="field-even"><p>A DataFrame object containing each word an author used, the total words the author used, and the normalised ratio of that word against all words used by the author for comparison against other authors.</p>
+</dd>
+<dt class="field-odd">Rtype final_word_df</dt>
+<dd class="field-odd"><p>class ‘pandas.core.frame.DataFrame’</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="EbookReader.book_reader">
+<code class="sig-prename descclassname">EbookReader.</code><code class="sig-name descname">book_reader</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">chapter_flag</span></em>, <em class="sig-param"><span class="n">author</span></em>, <em class="sig-param"><span class="n">language</span><span class="o">=</span><span class="default_value">'english'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#EbookReader.book_reader" title="Permalink to this definition">¶</a></dt>
+<dd><p>This parameter takes the path of an epub file and extracts the text from it into a dataframe of sentences, and a
+dictionary containing each word and the frequency it occurs in the book
+:param path: Path to the epub file
+:param chapter_flag: The flag that the epub uses to identify chapters
+:param author: The author for the book
+:param language: The language the book is written in (defaults to english)
+:return sentence_df: A DataFrame object that contains the author and all the sentences used in the book
+:return word_dict: A dictionary object that contains all the words used in the book (as a key) and it’s count</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="EbookReader.config_builder">
+<code class="sig-prename descclassname">EbookReader.</code><code class="sig-name descname">config_builder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source_directory</span></em><span class="sig-paren">)</span><a class="headerlink" href="#EbookReader.config_builder" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function that builds a config for the book_analysis function. It scans through a provided directory and for each
+epub file it finds, it parses the file and looks for the most frequent term used, once numerical values have been
+stripped away (chapter1,chapter2 etc. becomes chapter).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>source_directory</strong> (<em>class 'str'</em>) – The filepath for the base directory containing any and all epub files you want analysed.</p>
+</dd>
+<dt class="field-even">Return output_dict</dt>
+<dd class="field-even"><p>A dictionary object that can be used as the config for the Book Analysis function. It contains a list of epub filepaths in the source directory, what author they are from, what the title is, and what term designates a chapter</p>
+</dd>
+<dt class="field-odd">Rtype output_dict</dt>
+<dd class="field-odd"><p>class ‘dict’</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="EbookReader.main">
+<code class="sig-prename descclassname">EbookReader.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source_directory</span></em>, <em class="sig-param"><span class="n">output_directory</span></em><span class="sig-paren">)</span><a class="headerlink" href="#EbookReader.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main function of the EbookReader code. This function runs all the others in order, first creating the config from
+the source directory, then analysing the contents of the files in the config, before outputing the raw data as csv’s
+and wordclouds for each author to the provided output directory
+:param source_directory: The directory on your system containing all the epub files
+:param output_directory: The directory on your system you wish to place the outputs</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="EbookReader.supermakedir">
+<code class="sig-prename descclassname">EbookReader.</code><code class="sig-name descname">supermakedir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">directory</span></em>, <em class="sig-param"><span class="n">permission</span></em><span class="sig-paren">)</span><a class="headerlink" href="#EbookReader.supermakedir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-GraphicCreation">
+<span id="graphiccreation"></span><h2>GraphicCreation<a class="headerlink" href="#module-GraphicCreation" title="Permalink to this headline">¶</a></h2>
+<p>Created by Ross Dingwall. GraphicCreation.py is a module containing all functions used to create graphics from varying
+datasets.</p>
+<dl class="py function">
+<dt id="GraphicCreation.word_cloud_creation">
+<code class="sig-prename descclassname">GraphicCreation.</code><code class="sig-name descname">word_cloud_creation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span></em>, <em class="sig-param"><span class="n">key_column</span></em>, <em class="sig-param"><span class="n">value_column</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#GraphicCreation.word_cloud_creation" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function for creating wordcloud objects based on a DataFrame and two column names
+(one for the key, and one for the values)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong> (<em>class 'pandas.core.frame.DataFrame'</em>) – The Dataframe containing the WordCloud information</p></li>
+<li><p><strong>key_column</strong> (<em>class 'str'</em>) – The name for the DataFrame column containing the words</p></li>
+<li><p><strong>value_column</strong> (<em>class 'str'</em>) – The name for the DataFrame column containing the float value you wish to associate with the Words</p></li>
+<li><p><strong>title</strong> (<em>class 'str'</em>) – Defaults to None, but if a Title is provided it will be added to the WordCloud</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return plt</dt>
+<dd class="field-even"><p>plt object containing the wordcloud of the provided data</p>
+</dd>
+<dt class="field-odd">Rtype plt</dt>
+<dd class="field-odd"><p>class ‘matplotlib.figure.Figure’</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="Scraper.html" class="btn btn-neutral float-left" title="CraigsListScraper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Ross Dingwall
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
