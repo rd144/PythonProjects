@@ -1,0 +1,23 @@
+      {
+        "@context": "http://schema.org"
+        ,"@type": "Recipe"
+        ,"name": "Potluck Chopped Salad"
+        ,"image": "https://assets.bonappetit.com/photos/5e8cdb60a7a01c00083b08a9/16:9/w_1000,c_limit/HMONG-Potluck-Chopped-Salad.jpg"
+        ,"author": {
+          "@type": "Person"
+          ,"name": ""
+        }
+        ,"publisher": {"@type":"Organization","name":"Bon Apptit","logo":{"@type":"ImageObject","url":"https://www.bonappetit.com/images/logo-foodculture-tablet@1x.png","width":322,"height":56}}
+        ,"datePublished": "2020-04-14T04:00:00.000-04:00"
+        ,"dateCreated": "2020-04-18T20:29:00.000-04:00"
+        ,"description": "This style of chopped salad is a staple of Hmong potlucks. This recipe, from chef Yia Vang, is packed with crunchy vegetables and tossed with a creamy-umami dressing."
+        
+        ,"recipeYield": "4 servings"
+        ,"recipeIngredient": [
+          "4 large eggs","1 garlic clove, finely grated"," cup buttermilk"," cup mayonnaise","1 Tbsp. chopped dill"," tsp. Aji-No-Moto umami seasoning 	(MSG; optional)","1 romaine heart, quartered lengthwise, cut crosswise into 1\u0022 pieces","1 small carrot, peeled, cut into matchsticks","1 medium radish (such as watermelon or black), cut into quarters through root end, thinly sliced","1 cups mixed tender herb leaves (such as Thai basil, cilantro, dill and/or mint)"
+        ]
+        ,"recipeInstructions": [
+          {"@type":"HowToStep","text":"Bring a medium pot of water to a boil. Carefully lower eggs into water with a slotted spoon and cook 8 minutes. Transfer eggs to a bowl of ice water and let cool. Remove eggs from ice water, pat dry, and peel. Slice eggs crosswise and set aside for serving."},{"@type":"HowToStep","text":"Whisk garlic, buttermilk, mayonnaise, dill, and Aji-No-Moto seasoning (if using) in a large bowl to combine; season with salt and pepper. Add romaine, carrot, radish, and herbs and toss to coat; season with salt."},{"@type":"HowToStep","text":"To serve, tuck egg slices in and around salad."}
+        ]
+        ,"nutrition": ""
+      }
