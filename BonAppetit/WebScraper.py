@@ -146,7 +146,86 @@ def combine_recipes(recipe_directory):
                 print("Unable to process file: {file} as JSON".format(file=os.path.basename(file_path)))
 
     print("Combined : {0}".format(len(combined_dict)))
+    return combined_dict
 
+def recipes_to_df(recipes, output_path):
+    def key_check_and_return(dict, key):
+        if key in dict:
+            return dict[key]
+        else:
+            return None
+
+    df = pandas.DataFrame()
+
+    for index, link in enumerate(recipes):
+
+        link_dict = recipes[link]
+
+        if index % 100 == 0 and index != 0:
+            print('Processed {index}/{length} links'.format(index=index, length=len(recipes)))
+
+        contributor = key_check_and_return(link_dict, 'contributor')
+        ingredients = key_check_and_return(link_dict, 'ingredients')
+        if type(ingredients) is list:
+            number_of_ingredients = len(ingredients)
+            ingredients = ",".join(ingredients)
+        else:
+            number_of_ingredients = None
+
+        name = key_check_and_return(link_dict, 'name')
+        try:
+            date_created = key_check_and_return(link_dict, 'dateCreated')
+            date_created = datetime.datetime.strptime(date_created[:19], "%Y-%m-%dT%H:%M:%S")
+        except:
+            date_created = None
+
+        try:
+            date_published = key_check_and_return(link_dict, 'datePublished')
+            date_published = datetime.datetime.strptime(date_published[:19], "%Y-%m-%dT%H:%M:%S")
+        except:
+            date_published = None
+
+        image_link = key_check_and_return(link_dict, 'image_link')
+        instructions = key_check_and_return(link_dict, 'instructions')
+        if type(instructions) is dict:
+            number_of_steps = len(instructions)
+            instruction_order = sorted(instructions)
+            instruction_text = ""
+            for step in instruction_order:
+                instruction_text = instruction_text + "{step} : {instruction}\n".format(step=step,
+                                                                                        instruction=instructions[step])
+        else:
+            instruction_text = None
+            number_of_steps = None
+
+        df = df.append({
+            'URL': link,
+            'Contributor': contributor,
+            'Ingredients': ingredients,
+            'Number of Ingredients': number_of_ingredients,
+            'Dish Name': name,
+            'Date Created': date_created,
+            'Date Published': date_published,
+            'Instructions': instruction_text,
+            'Number of Steps': number_of_steps,
+            'Image Link': image_link
+        }, ignore_index=True)
+
+    contributor_df = df.groupby('Contributor').agg({
+        'Number of Steps': 'mean',
+        'Number of Ingredients': 'mean',
+        'URL': 'count',
+        'Date Published': ['max', 'min'],
+        'Date Created': ['max', 'min']
+    })
+
+    output = pandas.ExcelWriter(output_path)
+
+    df.to_excel(output, sheet_name='Ungrouped')
+    contributor_df.to_excel(output, sheet_name='Grouped')
+
+    print('Written to {0}'.format(output.path))
+    output.close()
 
 def main():
 
