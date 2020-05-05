@@ -16,3 +16,11 @@ GraphicCreation
    :members:
    :undoc-members:
    :show-inheritance:
+
+WikiCondense
+---------------
+
+.. automodule:: WikiCondense
+   :members:
+   :undoc-members:
+   :show-inheritance:

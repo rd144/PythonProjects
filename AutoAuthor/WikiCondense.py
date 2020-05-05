@@ -2,7 +2,7 @@
 The idea of this script is to create a Class that you can provide a Wikipedia link to and it will condense and return
 the top "n" passages it thinks are key
 
-This is mostly proof of concept to be attached to the AutoAuthor script upon completion.
+This is a POC as a first step before attempting the same process in EbookReader to return the top "n" passages in a book.
 
 run example:
 
@@ -59,16 +59,32 @@ def sentence_processing(text_content,word_frequencies):
     for index, sent in enumerate(sentence_list):
         if sent not in sentence_order.keys():
             sentence_order[sent] = index
-        for word in nltk.word_tokenize(sent.lower()):
+        word_list = nltk.word_tokenize(sent.lower())
+        word_score_count = 0
+        for word in word_list:
             if word in word_frequencies.keys():
+                word_score_count+=1
                 if sent not in sentence_scores.keys():
                     sentence_scores[sent] = word_frequencies[word]
                 else:
                     sentence_scores[sent] += word_frequencies[word]
 
+        if sent in sentence_scores:
+            sentence_scores[sent] = sentence_scores[sent]/word_score_count
+
     return sentence_order,sentence_scores
 
 def arguments():
+    """
+    Parses all the required arguments and returns them as the "args" object.
+    Required Arguments include:
+
+    1. wiki_url - The url to the wikipedia page you want condensed
+    2. summary_sentence_limit - The number of sentences desired for the summary. Defaults to 10
+
+    :return args: Namespace object containing the parsed value for the argument assigned to it's corresponding name
+    :rtype args: class 'argparse.Namespace'
+    """
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--wiki_url',type=str)
@@ -78,6 +94,15 @@ def arguments():
     return args
 
 def main(wiki_url,summary_sentence_limit):
+    """
+    The main function of the EbookReader code. This function runs all the others in order, first scraping the information
+    required from the URL provided. Then cleaning the text, before analysing and creating the summary.
+
+    :param wiki_url: The directory on your system containing all the epub files
+    :type wiki_url: class 'str'
+    :param summary_sentence_limit: The directory on your system you wish to place the outputs
+    :type summary_sentence_limit: class 'int'
+    """
 
     text_content = url_info_extraction(wiki_url)
     formatted_article_text,text_content = text_cleanup(text_content)
