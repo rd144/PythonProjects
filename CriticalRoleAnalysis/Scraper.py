@@ -1,57 +1,97 @@
 from bs4 import BeautifulSoup
+import re
 from requests import get
 import json
+from datetime import datetime
 
+class CriticalRoleScraper():
 
-fuzzy_link = 'https://kryogenix.org/crsearch/html/{link}'
+    def __init__(self):
 
+        self.person_focus_list = [
+            "Matt"
+            , "Taliesin"
+            , "Laura"
+            , "Marisha"
+            , "Liam"
+            , "Sam"
+            , "Ashley"
+            , "Travis"
+        ]
 
-transcripts_link = fuzzy_link.format(link='index.html')
-response = get(transcripts_link)
-soup = BeautifulSoup(response.text,parser='html.parser',features='lxml')
+        self.fuzzy_link = 'https://kryogenix.org/crsearch/html/{link}'
+        transcripts_link = self.fuzzy_link.format(link='index.html')
+        base_response = get(transcripts_link)
 
-results = soup.findAll(
-    lambda tag:tag.name=="li" and "campaign" in tag.text.lower() and not tag.find('span',class_='unprocessed')
-)
+        self.base_soup = BeautifulSoup(base_response.text,parser='html.parser',features='lxml')
 
-episode_record = {}
+    def episode_analysis(self):
 
-for result in results:
-    episode_title = result.text
-    print("Examining Episode {title}".format(title=episode_title))
+        self.episode_record = {}
 
-    episode_link = result.a['href']
-    new_page = fuzzy_link.format(link=episode_link)
-    new_response = get(new_page)
-    episode_soup = BeautifulSoup(new_response.text,parser='html.parser',features='lxml')
+        results = self.base_soup.findAll(
+            lambda tag: tag.name == "li" and "campaign" in tag.text.lower() and not tag.find('span',class_='unprocessed')
+        )
 
-    lines = episode_soup.find('div',id='lines')
-    lines = lines.findAll()
+        for result in results:
+            episode_title = result.text
+            print("Examining Episode {title}".format(title=episode_title))
 
-    speaker = None
-    speaker_record = {}
-    text_store = []
+            episode_link = result.a['href']
+            new_page = self.fuzzy_link.format(link=episode_link)
+            new_response = get(new_page)
+            episode_soup = BeautifulSoup(new_response.text, parser='html.parser', features='lxml')
 
-    for line in lines:
-        if line.name == 'dt':
-            if text_store and speaker:
-                if speaker in speaker_record:
-                    key = max(speaker_record[speaker].keys()) + 1
-                else:
-                    speaker_record[speaker] = {}
-                    key = 1
-                speaker_record[speaker][key] = " ".join(text_store)
-            speaker = line.strong.text.title()
+            lines = episode_soup.find('div', id='lines')
+            lines = lines.findAll()
+
+            speaker = None
+            speaker_record = {}
             text_store = []
-        elif line.name == 'dd':
-            text_store.append(line.text)
+            text_store_flag = False
 
-    episode_record[episode_title] = speaker_record
+            for line in lines:
+                if line.name == 'dt':
 
-    print("Examination Complete")
+                    if text_store and speaker:
+                        if speaker in speaker_record:
+                            key = max(speaker_record[speaker].keys()) + 1
+                        else:
+                            speaker_record[speaker] = {}
+                            key = 1
+                        speaker_record[speaker][key] = " ".join(text_store)
 
-print("All Episodes Examined")
+                    speaker = line.strong.text.title()
+                    if speaker in self.person_focus_list:
+                        text_store_flag = True
+                    else:
+                        text_store_flag = False
+                    text_store = []
 
-with open('C:\\Users\\Ross\\Desktop\\GIT\\PythonProjects\\CriticalRoleAnalysis\\CriticalRoleSpokenRecordsUnclean.json','w') as file:
-    json.dump(episode_record,file)
-    quit()
+                elif line.name == 'dd':
+                    nopunctuation = re.sub("(\W+|\d+)", " ", re.sub("(’|')", "", line.text))
+
+                    if all(ord(char) < 128 for char in nopunctuation) and text_store_flag:
+                        text_store.append(nopunctuation)
+
+            self.episode_record[episode_title] = speaker_record
+
+            print("Examination Complete")
+
+        print("All Episodes Examined")
+
+def main():
+
+    start = datetime.utcnow()
+
+    run = CriticalRoleScraper()
+    run.episode_analysis()
+
+    with open('Outputs\\JSON\\CriticalRoleSpokenRecords.json','w') as file:
+        json.dump(run.episode_record,file,indent=2)
+
+    time = (datetime.utcnow() - start).total_seconds()
+    print("Code Complete in {0}".format(time))
+
+if __name__ == '__main__':
+    main()
