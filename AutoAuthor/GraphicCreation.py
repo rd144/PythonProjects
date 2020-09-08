@@ -25,6 +25,12 @@ def word_cloud_creation(dataframe,key_column,value_column,title=None):
     :rtype plt: class 'matplotlib.figure.Figure'
     """
 
+
+    if title:
+        print("Creating Word Cloud : {0}".format(title))
+    else:
+        print("Creating Word Cloud : '{0} vs {1}'".format(key_column,value_column))
+
     dataframe =  dataframe[[key_column,value_column]]
 
     tuples = [tuple(x) for x in dataframe.values]
@@ -34,4 +40,6 @@ def word_cloud_creation(dataframe,key_column,value_column,title=None):
     plt.axis("off")
     if title:
         plt.title(title)
+
+    print("Word Cloud Completed")
     return plt

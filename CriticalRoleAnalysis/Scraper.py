@@ -69,10 +69,21 @@ class CriticalRoleScraper():
                     text_store = []
 
                 elif line.name == 'dd':
-                    nopunctuation = re.sub("(\W+|\d+)", " ", re.sub("(’|')", "", line.text))
+                    nopunctuation = []
+                    words = line.text.split()
+                    for word in words:
+                        # Remove Contractions 's 've 'd etc
+                        word = word.split("'")[0]
+                        # Replace Ampersand with word "and"
+                        word = word.replace("&","and")
+                        # Remove all punctuation and Digits except hyphenation
+                        word = re.sub("(?=\W|\d)[^-]","",word)
 
-                    if all(ord(char) < 128 for char in nopunctuation) and text_store_flag:
-                        text_store.append(nopunctuation)
+                        if all(ord(char) < 128 for char in word):
+                            nopunctuation.append(word.lower().strip())
+
+                    if text_store_flag:
+                        text_store.append(" ".join(nopunctuation))
 
             self.episode_record[episode_title] = speaker_record
 
