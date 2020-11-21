@@ -1,36 +1,157 @@
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>CraigsListScraper &#8212; PythonProjects  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CraigsListScraper &mdash; Python Projects  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="EbookReader module" href="EbookReader.html" />
-    <link rel="prev" title="RedditWritingPrompts" href="Reader.html" />
+    <link rel="next" title="AutoAuthor" href="AutoAuthor.html" />
+    <link rel="prev" title="RedditWritingPrompts" href="Reader.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
           
 
-          <div class="body" role="main">
+          
+            <a href="index.html" class="icon icon-home"> Python Projects
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="Projects.html">Ross Dingwall’s Python Projects</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Reader.html">RedditWritingPrompts</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CraigsListScraper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="AutoAuthor.html">AutoAuthor</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Python Projects</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="Projects.html">Ross Dingwall’s Python Projects</a> &raquo;</li>
+        
+      <li>CraigsListScraper</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/Scraper.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="module-Scraper">
 <span id="craigslistscraper"></span><h1>CraigsListScraper<a class="headerlink" href="#module-Scraper" title="Permalink to this headline">¶</a></h1>
@@ -39,126 +160,161 @@ provided parameters (including: neighbourhoods, GeoFence coordinates, budget,min
 <dl class="py function">
 <dt id="Scraper.arguments">
 <code class="sig-prename descclassname">Scraper.</code><code class="sig-name descname">arguments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Scraper.arguments" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Parses all the required arguments and returns them as the “args” object.
+Required Arguments include:</p>
+<ol class="arabic simple">
+<li><p>config_path - The path to the json config file.</p></li>
+<li><p>site - The location you want to investigate.</p></li>
+<li><p>output_path - The path to the .xlsx file you want to write the results to.</p></li>
+<li><p>category - The craigslist category you wish to investigate.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Return args</dt>
+<dd class="field-odd"><p>Namespace object containing the parsed value for the argument assigned to it’s corresponding name</p>
+</dd>
+<dt class="field-even">Rtype args</dt>
+<dd class="field-even"><p>class ‘argparse.Namespace’</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="Scraper.config_parser">
 <code class="sig-prename descclassname">Scraper.</code><code class="sig-name descname">config_parser</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraper.config_parser" title="Permalink to this definition">¶</a></dt>
-<dd><p>A function for loading the config from the provided JSON file and returning the parts required
-:param config_path: The path to the config provided by the arguments
-:return filters: A Dictionary object containing the filters desired for pulling from CraigslistHousing
-:return boxes: A Dictionary object containing any GeoFence boxes you wish to check if the property is within
-:return neighbourhoods: A List object of all the neighbourhoods you wish to check if the property is within</p>
+<dd><p>A function for loading the config from the provided JSON file and returning the parts required</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config_path</strong> (<em>class 'str'</em>) – The path to the config provided by the arguments</p>
+</dd>
+<dt class="field-even">Return filters</dt>
+<dd class="field-even"><p>A Dictionary object containing the filters desired for pulling from CraigslistHousing</p>
+</dd>
+<dt class="field-odd">Rtype filters</dt>
+<dd class="field-odd"><p>class ‘dict’</p>
+</dd>
+<dt class="field-even">Return boxes</dt>
+<dd class="field-even"><p>A Dictionary object containing any GeoFence boxes you wish to check if the property is within</p>
+</dd>
+<dt class="field-odd">Rtype boxes</dt>
+<dd class="field-odd"><p>class ‘dict’</p>
+</dd>
+<dt class="field-even">Return neighbourhoods</dt>
+<dd class="field-even"><p>A List object of all the neighbourhoods you wish to check if the property is within</p>
+</dd>
+<dt class="field-odd">Rtype neighbourhoods</dt>
+<dd class="field-odd"><p>class ‘list’</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="Scraper.location_check">
 <code class="sig-prename descclassname">Scraper.</code><code class="sig-name descname">location_check</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">result</span></em>, <em class="sig-param"><span class="n">boxes</span></em>, <em class="sig-param"><span class="n">neighbourhoods</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraper.location_check" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function for checking if a result is in the correct location. If the result contains GeoTag information it will
-check if it’s within the boxes provided. If no GeoTag information is present, it will check the neighbourhoods.
-:param result: Dictionary Object returned from CraigslistHousing that contains the results for each listing
-:param boxes: Dictionary Object containing the coordinates of GeoFences required
-:param neighbourhoods: List object containing the desired neighbourhoods
-:return:</p>
+check if it’s within the boxes provided. If no GeoTag information is present, it will check the neighbourhoods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>result</strong> (<em>class 'dict'</em>) – Dictionary Object returned from CraigslistHousing that contains the results for each listing</p></li>
+<li><p><strong>boxes</strong> (<em>class 'dict'</em>) – Dictionary Object containing the coordinates of GeoFences required</p></li>
+<li><p><strong>neighbourhoods</strong> (<em>class 'list'</em>) – List object containing the desired neighbourhoods</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return True/False</dt>
+<dd class="field-even"><p>A Boolean object that is set to True if the Result is present in either the Boxes or the Neighbourhoods</p>
+</dd>
+<dt class="field-odd">Rtype True/False</dt>
+<dd class="field-odd"><p>class ‘bool’</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="Scraper.main">
 <code class="sig-prename descclassname">Scraper.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config_path</span></em>, <em class="sig-param"><span class="n">site</span></em>, <em class="sig-param"><span class="n">category</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraper.main" title="Permalink to this definition">¶</a></dt>
-<dd><p>The main portion of the code, main calls the other functions in order and does any additional analysis required.
-:param config_path: File path for the JSON config file.
-:param site: The site you wish to analyse
-:param category: The sub-category desired, taken from CraigsList (For example, <a class="reference external" href="https://vancouver.craigslist.org/pml/">https://vancouver.craigslist.org/pml/</a>
-the sub-category is “pml”
-:return output_df: A df containing the anaylsed results.</p>
+<dd><p>The main portion of the code, main calls the other functions in order and does any additional analysis required.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config_path</strong> (<em>class 'str'</em>) – File path for the JSON config file.</p></li>
+<li><p><strong>site</strong> (<em>class 'str'</em>) – The site you wish to analyse</p></li>
+<li><p><strong>category</strong> (<em>class 'str'</em>) – The sub-category desired, taken from CraigsList (For example, <a class="reference external" href="https://vancouver.craigslist.org/pml/">https://vancouver.craigslist.org/pml/</a> the sub-category is “pml”)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return output_df</dt>
+<dd class="field-even"><p>A df containing the anaylsed results.</p>
+</dd>
+<dt class="field-odd">Rtype output_df</dt>
+<dd class="field-odd"><p>class ‘pandas.core.frame.DataFrame’</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="Scraper.output_to_excel">
 <code class="sig-prename descclassname">Scraper.</code><code class="sig-name descname">output_to_excel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">output_df</span></em>, <em class="sig-param"><span class="n">output_path</span></em>, <em class="sig-param"><span class="n">column_order</span></em><span class="sig-paren">)</span><a class="headerlink" href="#Scraper.output_to_excel" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function that first checks if any results have been found. If they have, it re-orders them and writes the report
-to Excel a the path provided.
-:param output_df: The DataFrame object containing the results you wish to be output
-:param column_order: A list of columns in the order you want the dataframe to be presented
-:param output_path: The path you wish the Excel file to be written to</p>
+to Excel a the path provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_df</strong> (<em>class 'pandas.core.frame.DataFrame'</em>) – The DataFrame object containing the results you wish to be output</p></li>
+<li><p><strong>column_order</strong> (<em>class 'list'</em>) – A list of columns in the order you want the dataframe to be presented</p></li>
+<li><p><strong>output_path</strong> (<em>class 'str'</em>) – The path you wish the Excel file to be written to</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 
 
+           </div>
+           
           </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">PythonProjects</a></h1>
-
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="Projects.html">Ross Dingwall’s Python Projects</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Reader.html">RedditWritingPrompts</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">CraigsListScraper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="EbookReader.html">EbookReader module</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="Projects.html#module-EbookReader">EbookReader module</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="Projects.html">Ross Dingwall’s Python Projects</a><ul>
-      <li>Previous: <a href="Reader.html" title="previous chapter">RedditWritingPrompts</a></li>
-      <li>Next: <a href="EbookReader.html" title="next chapter">EbookReader module</a></li>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="AutoAuthor.html" class="btn btn-neutral float-right" title="AutoAuthor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Reader.html" class="btn btn-neutral float-left" title="RedditWritingPrompts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+  
 
+  <hr/>
 
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Ross Dingwall
 
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-
-
-
+</footer>
 
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2020, Ross Dingwall.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/Scraper.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
 
-    
+    </section>
 
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
     
-  </body>
+   
+
+</body>
 </html>

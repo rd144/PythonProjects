@@ -3,14 +3,13 @@ Created by Ross Dingwall. EbookReader.py is a script to parse directories of epu
 information regarding the word frequency and sentences used within those files.
 
 Known Bugs:
-    - Currently the code will see the author "John Smith" as different from "Smith, John". While a function could be put
-    in place to resolve this. I believe it may lead to more issues, when a manual review of the data would resolve this
-    swiftly. However, for very large DataSets, this bug may be better resolved automatically.
+    * Currently the code will see the author "John Smith" as different from "Smith, John". While a function could be put in place to resolve this. I believe it may lead to more issues, when a manual review of the data would resolve this swiftly. However, for very large DataSets, this bug may be better resolved automatically.
 
-#TODO - Expand the code to work on Linux as well as Windows
-#TODO - Move import statements into the functions that use them to allow them to be properly called from outside the main
-#TODO - Move Graphic Functions like "word_cloud_creation" to it's own script
-#TODO - Create the output directory and it's structure if it's not already in place
+TODO:
+    * Expand the code to work on Linux as well as Windows
+    * Move import statements into the functions that use them to allow them to be properly called from outside the main
+    * Create the output directory and it's structure if it's not already in place
+
 """
 
 from ebooklib import epub
@@ -18,8 +17,6 @@ from nltk.tokenize import sent_tokenize
 from nltk.corpus import stopwords
 import bs4
 import pandas
-from wordcloud import WordCloud
-import matplotlib.pyplot as plt
 from csv import QUOTE_ALL
 from datetime import datetime
 import glob
@@ -29,8 +26,14 @@ import argparse
 
 def arguments():
     """
-    Parses all the required arguments and returns them as the "args" object
+    Parses all the required arguments and returns them as the "args" object.
+    Required Arguments include:
+
+    1. source_directory - The directory that contains the Ebooks you wish analysed.
+    2. output_directory - The directory you wish the results created.
+
     :return args: Namespace object containing the parsed value for the argument assigned to it's corresponding name
+    :rtype args: class 'argparse.Namespace'
     """
 
     parser = argparse.ArgumentParser()
@@ -43,20 +46,24 @@ def arguments():
 
 def config_builder(source_directory):
     """
+
     A function that builds a config for the book_analysis function. It scans through a provided directory and for each
     epub file it finds, it parses the file and looks for the most frequent term used, once numerical values have been
     stripped away (chapter1,chapter2 etc. becomes chapter).
-    :param source_directory: The directory containing the epub files. Must be structured such that the author's name is the
-    :return output_dict: A dictionary object that can be used as the config for the Book Analysis function. It contains:
-    a list of epub filepaths in the source directory, what author they are from, what the title is, and what term designates a chapter
+
+    :param source_directory: The filepath for the base directory containing any and all epub files you want analysed.
+    :type source_directory: class 'str'
+    :return output_dict: A dictionary object that can be used as the config for the Book Analysis function. It contains a list of epub filepaths in the source directory, what author they are from, what the title is, and what term designates a chapter
+    :rtype output_dict: class 'dict'
+
     """
 
     def dict_key_value_extract(key_term, dict_object):
         """
         A recursive sub-function used to find all instances of the key term provided in a nested dict object
+
         :param key_term: a string object you want to find as a value in the dict
         :param dict_object: a dictionary object (can be nested) which the code will find all instances of the key_term
-        :return:
         """
 
         if hasattr(dict_object, 'items'):
@@ -74,6 +81,7 @@ def config_builder(source_directory):
     def value_dive(object):
         """
         A sub-function for returning the left most string object in a dictionary/tuple/list of lists
+
         :param object: The object you want to retrieve the left-most object from
         :return object: The found string in the left most position
         """
@@ -126,21 +134,31 @@ def config_builder(source_directory):
 
     return output_dict
 
+def supermakedir(directory,permission):
+
+    if not os.path.isdir(directory):
+        oldmask = os.umask(000)
+        os.makedirs(directory,exist_ok=True,mode=permission)
+        os.umask(oldmask)
+
 def book_reader(path,chapter_flag,author,language="english"):
     """
     This parameter takes the path of an epub file and extracts the text from it into a dataframe of sentences, and a
     dictionary containing each word and the frequency it occurs in the book
+
     :param path: Path to the epub file
     :param chapter_flag: The flag that the epub uses to identify chapters
     :param author: The author for the book
     :param language: The language the book is written in (defaults to english)
     :return sentence_df: A DataFrame object that contains the author and all the sentences used in the book
     :return word_dict: A dictionary object that contains all the words used in the book (as a key) and it's count
+
     """
 
     def word_counter(word_dict,word_list):
         """
         A subfunction for updating the word_dict object with the count of words in a given list of words
+
         :param word_dict: Existing word_dict object
         :param word_list: A list of words
         :return word_dict: Updated word_dict object
@@ -160,6 +178,7 @@ def book_reader(path,chapter_flag,author,language="english"):
         """
         A sub function that takes an EpubHtml object that has been flagged as a chapter and uses BeautifulSoup to extract
         the text values and form them into the sentence_df and word_dict object
+
         :param item: Epubhtml Object, flagged as a chapter
         :param sentence_df: Existing sentence_df object to have the chapters information appended to
         :param word_dict: Existing word_dict object to have the chapters information appended to
@@ -211,18 +230,24 @@ def book_reader(path,chapter_flag,author,language="english"):
 
 def book_analysis(config):
     """
+
     A function which takes the config created by the config builder, iterates through all the stored filepaths and there
     details, and extracts information on each word, and sentence used by the author of the book. This information is stored
     in DataFrame objects, and the word DataFrame is normalised before being returned.
+
     :param config: The dictionary object config, created by config_builder (based on a source_directory)
+    :type config: class 'dict'
     :return final_sentence_df: A DataFrame object containing each sentence the author wrote, and in what book they wrote it.
-    :return final_word_df: A DataFrame object containing each word an author used, the total words the author used, and
-    the normalised ratio of that word against all words used by the author for comparison against other authors.
+    :rtype final_sentence_df: class 'pandas.core.frame.DataFrame'
+    :return final_word_df: A DataFrame object containing each word an author used, the total words the author used, and the normalised ratio of that word against all words used by the author for comparison against other authors.
+    :rtype final_word_df: class 'pandas.core.frame.DataFrame'
+
     """
 
     def normalise_word_df(dataframe):
         """
         A sub-function for normalising a given DataFrame
+
         :param dataframe: The DataFrame object you wish to normalise
         :return normalized: The Normalized DataFrame object
         """
@@ -277,33 +302,12 @@ def book_analysis(config):
     print("Extraction Complete")
     return final_sentence_df, final_word_df
 
-def word_cloud_creation(dataframe,key_column,value_column,title=None):
-    """
-    A function for creating wordcloud objects based on a DataFrame and two column names
-    (one for the key, and one for the values)
-    :param dataframe: The Dataframe containing the WordCloud information
-    :param key_column: The name for the DataFrame column containing the words
-    :param value_column: The name for the DataFrame column containing the float value you wish to associate with the Words
-    :param title: Defaults to None, but if a Title is provided it will be added to the WordCloud
-    :return:
-    """
-
-    dataframe =  dataframe[[key_column,value_column]]
-
-    tuples = [tuple(x) for x in dataframe.values]
-    wordcloud = WordCloud(background_color="white",max_words=200,width=3200, height=1600).generate_from_frequencies(dict(tuples))
-    plt.figure()
-    plt.imshow(wordcloud, interpolation="bilinear")
-    plt.axis("off")
-    if title:
-        plt.title(title)
-    return plt
-
 def main(source_directory,output_directory):
     """
     The main function of the EbookReader code. This function runs all the others in order, first creating the config from
     the source directory, then analysing the contents of the files in the config, before outputing the raw data as csv's
     and wordclouds for each author to the provided output directory
+
     :param source_directory: The directory on your system containing all the epub files
     :param output_directory: The directory on your system you wish to place the outputs
     """
@@ -317,30 +321,13 @@ def main(source_directory,output_directory):
 
     print("Outputing Dataframes to {output_directory}".format(output_directory=output_directory))
 
+    if not os.path.exists(output_directory):
+        supermakedir(output_directory,0o775)
+
     final_sentence_df.to_csv(output_directory + "FinalSentences.csv", sep="|", quoting=QUOTE_ALL, index=False)
     final_word_df.to_csv(output_directory + "FinalWords.csv", sep="|", quoting=QUOTE_ALL, index=False)
 
     print("DataFrame Output Complete")
-
-    print("Creating Wordlouds for each author\nWord Clouds can be found in {output_directory}".format(output_directory=output_directory+"WordClouds"))
-
-    for author in final_word_df["Author"].drop_duplicates():
-        output_path = "{directory}\\WordClouds\\{author}.png".format(
-            directory=output_directory,
-            author=author
-        )
-        print("Creating Wordcloud for {author}".format(author=author))
-        cloud = word_cloud_creation(
-            dataframe=final_word_df[final_word_df["Author"] == author],
-            key_column="Word",
-            value_column="Normalized Percentage",
-            title=author
-        )
-
-        cloud.savefig(output_path)
-        cloud.close()
-
-    print("Word Cloud Creation Complete")
 
     print("Code Completed in {time} seconds".format(
         time=(datetime.utcnow() - start_time).total_seconds()

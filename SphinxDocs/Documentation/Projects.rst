@@ -6,4 +6,4 @@ Ross Dingwall's Python Projects
 
    Reader
    Scraper
-   EbookReader
+   AutoAuthor

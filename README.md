@@ -31,3 +31,11 @@ document each project automatically from commenting in the code itself.
 7. JSON Dict Objects - RedditWritingPrompts
 8. Datetime Formatting - RedditWritingPrompts
 9. Automatic Documentation - SphinxDocs
+
+## Documentation - How to View
+
+To properly view all documentation created using the Sphinx Toolset, please first clone, at minimum,
+the SphinxDocs repository and then navigate to "SphinxDocs/Documentation/_build/html/index.html".
+
+If you open this with a Web Browser such as Chrome it should allow you to properly view the documentation
+for all my projects.
