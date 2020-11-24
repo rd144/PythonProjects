@@ -1,0 +1,19 @@
+The Aim of this project is to create two functions. One that can create Sudoku problems of a given difficulty, and
+one that can solve them.
+
+For the first part this should be achieved by using the logical basis of sudoku. I suspect the hardest part of the
+start will be defining and attaining set difficulties.
+
+For the second part, use a large dataset of problems defined by the first part to train a neural Network AI that can
+solve any sudoku puzzle it's given
+
+A possible 3rd part would be to use pygame to create a display to present the problem and the NN solving it in real time
+
+Approach:
+
+Find some empty space
+Attempt to place the digits 1-n in that space
+Check if that digit is valid in the current spot based on the current board
+ a. If the digit is valid, recursively attempt to fill the board using steps 1-3.
+ b. If it is not valid, reset the square you just filled and go back to the previous step.
+Once the board is full by the definition of this algorithm we have found a solution.
