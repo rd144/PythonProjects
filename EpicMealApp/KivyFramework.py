@@ -74,14 +74,15 @@ class RecipeManager(GridLayout):
 class EpicMealTime(App):
 
     def build(self):
-        #
-        # self.screen_manager = ScreenManager()
+
+        self.screen_manager = ScreenManager()
         self.recipe_manager = RecipeManager()
 
-        # screen = Screen(name="RecipeManager")
-        # screen.add_widget(self.recipe_manager)
+        screen = Screen(name="RecipeManager")
+        screen.add_widget(self.recipe_manager)
+        self.screen_manager.add_widget(screen)
 
-        return self.recipe_manager
+        return self.screen_manager
 
 if __name__ == '__main__':
     application = EpicMealTime()
