@@ -1,0 +1,12 @@
+{
+  "Creamy Chicken Marsala": {
+    "ingredients" : {
+      "Small Chicken Breasts" : {"unit": "each","quantity" :  4},
+      "Butter" : {"unit": "tlbs","quantity" :  4},
+      "Marsala Wine" : {"unit": "cup","quantity" :  0.5}
+    },
+    "tags" : {},
+    "source" : "",
+    "rating" : "None"
+  }
+}
