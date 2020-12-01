@@ -1,6 +1,7 @@
 import cv2
 import glob
 import os
+import argparse
 
 class FacialRecognition():
 
@@ -55,13 +56,21 @@ class FacialRecognition():
             cv2.imshow("Faces found", resize)
             cv2.waitKey(0)
 
-def main(root_path):
+def arguments():
 
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--root_directory")
+
+    return parser.parse_args()
+
+
+def main():
+
+    args = arguments()
     recogniser = FacialRecognition()
-
-    path_iterator = filter(os.path.isfile, glob.glob(root_path + '/**/*', recursive=True))
+    path_iterator = filter(os.path.isfile, glob.glob(args.root_directory + '/**/*', recursive=True))
     for path in path_iterator:
         recogniser.recognise_faces(path)
 
 if __name__ == '__main__':
-    main("C:\\Users\\Ross\\Desktop\\Stuff to keep\\jpg")
+    main()
