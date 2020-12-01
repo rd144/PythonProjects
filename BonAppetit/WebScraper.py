@@ -1,4 +1,5 @@
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 import re
@@ -11,7 +12,7 @@ import os
 def create_chrome_session(url):
 
     # create a new Chrome session
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(ChromeDriverManager().install())
     driver.implicitly_wait(30)
     driver.get(url)
     return driver
