@@ -15,6 +15,7 @@ import sys
 sys.path.append(os.path.abspath(os.sep.join(["..","..","RedditWritingPrompts"])))
 sys.path.append(os.path.abspath(os.sep.join(["..","..","CraigsListScraper"])))
 sys.path.append(os.path.abspath(os.sep.join(["..","..","AutoAuthor"])))
+sys.path.append(os.path.abspath(os.sep.join(["..","..","BonAppetit"])))
 
 # -- Project information -----------------------------------------------------
 
@@ -29,8 +30,6 @@ author = 'Ross Dingwall'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 import sphinx_rtd_theme
-
-
 
 extensions = ['sphinx.ext.autodoc','sphinx_rtd_theme']
 
