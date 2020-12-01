@@ -12,8 +12,6 @@ The UI must be:
 Current Scope: 4 pages (Title Page, Recipe Log, Add Recipe, Meal Plan)
 For now it can work just on the one computer, but ideally I'd like people to be able to share recipes etc and
 build a backlog (if this gets crazy, may need to look into compression or alternative storage methods aside from JSON)
-
-
 """
 
 import kivy
@@ -21,8 +19,7 @@ from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
-from kivy.uix.dropdown import DropDown
-
+from kivy.uix.slider import Slider
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager, Screen
 
@@ -32,6 +29,7 @@ kivy.require('2.0.0')
 
 
 #TODO - Take a look into KivyMD for better designed widgets
+#TODO - Reformat Class Names and add new Classes for the other pages in scope
 
 class RecipeManager(GridLayout):
 
@@ -62,7 +60,7 @@ class RecipeManager(GridLayout):
         self.quantity_item = TextInput(text="<Amount of Ingredient>", multiline=False)
         details_layout.add_widget(self.quantity_item)
 
-        # TODO - Implement this as a drop down
+        # TODO - Implement this as a Slider
         # Drop down with list of standard Units (For use with Unit conversion later)
         self.unit_label = Label(text="Unit :")
         details_layout.add_widget(self.unit_label)
