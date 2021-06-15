@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS QUESTIONS (
 	question_id integer PRIMARY KEY,
-	question_text varchar
+	question_text varchar,
+	sent integer --0 for False, 1 for True
 )
 ;
 
@@ -12,12 +13,14 @@ CREATE TABLE IF NOT EXISTS EMAILS (
 )
 ;
 
-CREATE TABLE IF NOT EXISTS RESPONSE (
+CREATE TABLE IF NOT EXISTS CORRESPONDENCE (
 	response_id	integer PRIMARY KEY,
 	email_id	integer NOT NULL,
-	response_text	varchar,
+	question_id integer NOT NULL,
 	date_sent date NOT NULL,
-	date_received date,
-	FOREIGN KEY(email_id) REFERENCES EMAILS(email_id)
+    date_received date,
+	response_text	varchar,
+	FOREIGN KEY(email_id) REFERENCES EMAILS(email_id),
+	FOREIGN KEY(question_id) REFERENCES QUESTIONS(question_id)
 );
 

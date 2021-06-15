@@ -41,7 +41,7 @@ class Mementos():
             {
                 "EMAILS":"ScrapDataLoad/EMAILS.csv"
                 , "QUESTIONS":"ScrapDataLoad/QUESTIONS.csv"
-                , "RESPONSE": "ScrapDataLoad/RESPONSE.csv"
+                , "CORRESPONDENCE": "ScrapDataLoad/CORRESPONDENCE.csv"
             }
         for table in scrap_dict:
             csv_file_load(
