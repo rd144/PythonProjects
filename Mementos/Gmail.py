@@ -5,23 +5,6 @@ import smtplib
 
 class email_handler():
 
-    def __init__(self,fromEmail,fromPassword):
-
-        self.session = self.create_session(
-            fromEmail=fromEmail,
-            fromPassword=fromPassword
-        )
-
-    def message_creation(self,subject,text_content):
-
-        email_message = MIMEMultipart("alternative")
-        email_message["Subject"] = subject
-        email_message.attach(
-            MIMEText(text_content)
-        )
-
-        return email_message
-
     def create_session(self,fromEmail,fromPassword):
 
         print("Creating Gmail Session")
@@ -40,16 +23,47 @@ class email_handler():
             print("Session Creation failed due to error:\n\t{error}".format(error=error))
             quit()
 
-    def send_emails(self,session, message, distributionList):
+    def __init__(self,fromEmail,fromPassword):
+
+        self.session = self.create_session(
+            fromEmail=fromEmail,
+            fromPassword=fromPassword
+        )
+
+    def message_creation(self,subject,text_content):
+
+        email_message = MIMEMultipart("alternative")
+        email_message["Subject"] = subject
+        email_message.attach(
+            MIMEText(text_content)
+        )
+
+        return email_message
+
+    def send_email(self, message, toEmail):
+
+        print(f"Sending message to {toEmail}")
+        try:
+            self.session.sendmail(
+                msg=message.as_string(),
+                to_addrs=toEmail,
+                from_addr=self.session.user
+            )
+            print("Email sent to {toEmail}".format(toEmail=toEmail))
+        except Exception as error:
+            print("Email distribution failed due to error:\n\t{error}".format(error=error))
+            quit()
+
+    def send_emails_to_list(self, message, distributionList):
 
         print("Sending message to distribution list")
         try:
             print("Sending emails")
             for toEmail in distributionList:
-                session.sendmail(
+                self.session.sendmail(
                     msg=message.as_string(),
                     to_addrs=toEmail,
-                    from_addr=session.user
+                    from_addr=self.session.user
                 )
                 print("Email sent to {toEmail}".format(toEmail=toEmail))
         except Exception as error:

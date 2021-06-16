@@ -1,0 +1,16 @@
+Hey {{user}},
+
+Please find below the link and details to answer {{month}}'s question for the BYTMementos Project.
+
+Google Form Link: {{link}}
+Question Number: {{question_id}}
+
+Question:
+
+    {{question}}
+
+Take your time, and let me know if you run into any issues. This was a learning project for me after all!
+
+Hope you're well!
+
+Ross
